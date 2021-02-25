@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet"href="style.css">
+		<title>Игра "Угадай число"</title>
+		<script type="text/javascript">
+			var user1;
+			var user2;
+			var tryCount = 5;
+			var allCount = tryCount * 2;
+			var answer = parseInt(Math.random() * 100);
+			var counter = 1;
+
+			function readInt(){
+				var number = document.getElementById("userAnswer").value;
+				return parseInt(number);
+			}
+
+			function write(text){
+				document.getElementById("info").innerHTML = text;
+			}
+
+			function close(id){
+				document.getElementById(id).style.display = "none";
+			}
+
+			function disclose(id){
+				document.getElementById(id).style.display = "block";
+			}
+
+			function start(){
+				user1 = document.getElementById("userName1").value;
+				user2 = document.getElementById("userName2").value;
+
+				if(user1 == ""){
+					user1 = "этот, который првый";
+				};
+				if(user2 == ""){
+					user2 = "того, который был второй";
+				};
+
+				close("box-start");
+				disclose("box-game");
+				close("button-rStart");
+				write("Первым угадывает " + user1 + ".<br> Введите число от 1 до 100");
+
+			}
+
+			function rStart(){
+				answer = parseInt(Math.random() * 100);
+				write("Угадайте число от 0 до 100");
+				disclose("box-start");
+				disclose("userAnswer");
+				disclose("button-answer");
+				close("box-game");
+				close("button-rStart");
+				counter = 1;
+			}
+
+			function game(){
+				for(; counter <= allCount; counter++) {
+
+					if (counter % 2 != 0) {
+						var userAnswer = readInt();
+
+						if(userAnswer == answer){
+							write("<b>Поздравляю! " + user1 + " угадал!</b>");
+							close("button-answer");
+							close("userAnswer");
+							disclose("button-rStart");
+							break;
+						}else if(userAnswer > answer){
+							write(user1 + " ввел слишком большое число<br>Очередь " + user2 + ". Введите число от 1 до 100");
+							break;
+						}else if(userAnswer < answer){
+							write(user1 + " ввел слишком маленькое число<br>Очередь " + user2 + ". Введите число от 1 до 100");
+							break;
+						}else if(isNaN(userAnswer)){
+							write(user1 + " ничего не ввел, вам это засчитается за попытку.<br>Очередь " + user2 + ". Введите число от 1 до 100");
+							break;
+						}
+					}else{
+						userAnswer = readInt();
+						if(userAnswer == answer){
+							write("<b>Поздравляю! " + user2 + " угадали!</b>");
+							close("button-answer");
+							close("userAnswer");
+							disclose("button-rStart");
+							break;
+						}else if(counter >= allCount){
+							write("ничья, ни кто не угадал.<br>Правильный ответ: " + answer);
+							close("button-answer");
+							close("userAnswer");
+							disclose("button-rStart");
+							break;
+						}else if(userAnswer > answer){
+							write(user2 + " ввел слишком большое число<br>Очередь " + user1 + ". Введите число от 1 до 100");
+							break;
+						}else if(userAnswer < answer){
+							write(user2 + " ввел слишком маленькое число<br>Очередь " + user1 + ". Введите число от 1 до 100");
+							break;
+						}else if(isNaN(userAnswer)){
+							write(user1 + " ничего не ввел, вам это засчитается за попытку.<br>Очередь " + user2 + ". Введите число от 1 до 100");
+							break;
+						}
+					}
+			 	};
+			 	counter++;
+			};
+		</script>
+	</head>
+	<body>
+		<div class="header">
+			<a href="index.html" id="index.html">Главная</a>
+			<a href="puzzle.html" id="puzzle.html">Загадки</a>
+			<a href="guess_the_number.html" id="guess_the_number.html">Угадай число</a>
+			<a href="password_generator.html" id="password_generator.html">Генератор паролей</a>
+		</div>
+		<div class="content">
+			<h1>Игра "Угадай число"</h1>
+			<div class="box">
+				<div id="box-start">
+					<p id="info-satr">"Игра "Угадай число".</p>
+					<p>Правила: Игра для 2-х игроков. Вам над по очереди вводить ответы. Выигрывает тот, кто первый отгадает число до последней попытки. Всего 5 попыток у каждого игрока.</p>
+
+					<p>Введите имя первого игрока:</p>
+					<input type="text" autocomplete="off" id="userName1">
+					<p>Введите имя второго игрока:</p>
+					<input type="text" autocomplete="off" id="userName2">
+					<br>
+					<a href="#" onClick="start();" id="button-start">Старт</a>
+				</div>
+
+				<div id="box-game">
+					<p id="info">Угадайте число от 0 до 100</p>
+					<input type="text" autocomplete="off" id="userAnswer">
+					<br>
+					<a href="#" onClick="game();" id="button-answer">Ответ</a>
+					<a href="#" onClick="rStart();" id="button-rStart">Играть ещё раз</a>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			Copyright © 2021
+		</div>
+	</body>
+	<script type="text/javascript">
+		function url(){
+			var url = window.location.pathname;
+			var arrUrl = url.split("/");
+			var nPage = arrUrl.length - 1;
+			var page = arrUrl[nPage];
+
+			document.getElementById(page).style.backgroundColor ="rgb(255, 153, 0)";
+		};
+		url();
+	</script>
+</html>

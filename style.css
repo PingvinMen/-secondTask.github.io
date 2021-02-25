@@ -1,0 +1,100 @@
+html{
+	background-color: rgba(52,56,55, 1.0);
+}
+body{
+	margin: 0px;
+}
+.header{
+	border-radius: 0px 0px 20px 20px;
+	text-align: center;
+	padding:25px 0px 25px 0px;
+	width: 100%;
+	margin: 0px auto 0px auto;
+	background-color: rgba(200,203,200, 1.0);
+	position: absolute;
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.header a{
+	padding: 25px;
+	color: rgba(0,0,0, 1.0);
+	font-size: 30px;
+	text-decoration: none;
+	border-radius: 0px 0px 20px 20px;
+	background-color:rgba(200,203,200, 1.0);
+	font-weight: 600;
+
+}
+.content{
+	background-color: rgba(200,203,200, 1.0);
+	padding: 80px 40px 40px 40px;
+	width: 820px;
+	margin: 0px auto 0px auto;
+	border-radius: 0px 0px 20px 20px;
+	color: rgba(0,0,0, 1.0);
+}
+.content h1{
+    text-align: center;
+    margin: 0;
+    padding: 25px;
+    font-size: 30px;
+}
+.content p{
+	font-size: 18px;
+}
+.content img{
+	border-radius: 20px;
+}
+.content_photo{
+	text-align: center;
+}
+.content_text a{
+	color: rgba(0,0,0, 1.0);
+}
+.content .box{
+font-size: 20px;
+}
+.content .box a {
+	display: block;
+	width: 150px;
+	padding:5px 10px;
+	color: rgba(0,0,0, 1.0);
+	background-color:  rgba(255, 153, 0, 1.0);
+	border-radius: 10px 10px 10px 10px;
+	font-size: 20px;
+	text-decoration: none;
+	text-align: center;
+	margin-top: 30px;
+}
+.content .box input {
+	width: 250px;
+}
+.content .box #box-game{
+	display: none;
+}
+.content .box #box-result{
+	display: none;
+}
+.footer{
+	background-color: rgba(200,203,200, 1.0);
+	border-radius: 20px 20px 0px 0px;
+	text-align: center;
+	padding: 25px;
+	color: rgba(0,0,0, 1.0);
+	height: 20px;
+	width: 720px;
+	margin: 0px auto 0px auto;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+.footer a{
+	color: rgba(0,0,0, 1.0);
+}
+.content .box #box-request p{
+	margin-right: 10px;
+	display:inline-block;
+}
+.content .box #box-request a{
+	display:inline-block;
+}

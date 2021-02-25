@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Игра "Загадки"</title>
+		<link rel="stylesheet"href="style.css">
+		<script type="text/javascript">
+
+			function close(id){
+				document.getElementById(id).style.display = "none";
+			}
+
+			function disclose(id){
+				document.getElementById(id).style.display = "block";
+			}
+
+			function write(text){
+				document.getElementById("info").innerHTML = text;
+			}
+
+			function start(){
+				close("box-start");
+				disclose("box-game");
+				write("<b>Загадка " + 1 + ":</b><br>" + arrRiddle[0][0]);
+			}
+
+			function readInt(){
+				var answer = document.getElementById("userAnswer").value;
+				return answer;
+			}
+
+			var arrRiddle = [
+				["Семьдесят одежек\nи все без застежек", "салат", "капуста"],
+				["Наши поросятки выросли на грядке,\nК солнышку бочком, хвостики крючком.\nЭти поросятки играют с нами в прятки.","огурцы","огурец","огурчик"],
+				["Красна девица\nСидит в темнице,\nА коса на улице.", "морковь", "морковка"],
+				["Кругла, а не месяц,\nЖелта, а не масло,\nСладка, а не сахар,\nС хвостом, а не мышь.", "репка", "репа"],
+				["Маленький и горький, луку брат.","чеснок"],
+				["Круглое, румяное с дерева достану я,\nНа тарелку положу, «Кушай, мамочка»,- скажу.","яблоко","яблоки"]
+			];
+			var userAnswer;
+			var сookies = 0;
+			var lastRiddle = arrRiddle.length - 1;
+			var a = 0;
+			var riddle = 0;
+
+			function game(){
+				for(; riddle <= lastRiddle; ){
+					var lastAnswer = (arrRiddle[riddle].length - 1);
+
+					write("<b>Загадка " + (riddle + 1) + ":</b><br>" + arrRiddle[riddle][0]);
+
+					var userAnswer = readInt();
+					userAnswer = userAnswer.toLowerCase();
+
+					for(var answer = 1; answer <= lastAnswer; answer++){
+						if(userAnswer == arrRiddle[riddle][answer]){
+							сookies += 1;
+							a += 1;
+							break;
+						}
+					}
+
+					if(a > 0){
+						if (riddle < lastRiddle){
+							write("<b>Правильно!</b><br>У вас " + сookies + " балл(ов).<br><b>Загадка " + (riddle+1) + ":</b><br>" + arrRiddle[(riddle + 1)][0]);
+							break;
+						}else{
+							write("<b>Правильно!</b><br>Игра окончена.<br>У вас " + сookies + " балл(ов).");
+							close("userAnswer");
+							close("button-answer");
+							break;
+						}
+						break;
+					}else{
+						if (riddle < lastRiddle){
+						write("<b>Неправильно.</b><br>У вас " + сookies + " балл(ов).<br><b>Загадка " + (riddle+1) + ":</b><br>" + arrRiddle[(riddle + 1)][0]);
+						break;
+						}else{
+							write("<b>Не правильно.</b><br>Игра окончена.<br>У вас " + сookies + " балл(ов).");
+							close("userAnswer");
+							close("button-answer");
+							break;
+						}
+					}
+				}
+				riddle = riddle + 1;
+			}
+		</script>
+	</head>
+	<body>
+		<div class="header">
+			<a href="index.html" id="index.html">Главная</a>
+			<a href="puzzle.html" id="puzzle.html">Загадки</a>
+			<a href="guess_the_number.html" id="guess_the_number.html">Угадай число</a>
+			<a href="password_generator.html" id="password_generator.html">Генератор паролей</a>
+		</div>
+		<div class="content">
+			<h1>Игра "Загадки"</h1>
+			<div class="box">
+				<div id="box-start">
+					<p id="info-satr">"Игра "Загадки". Что бы запустить игру нажмите кнопку "Старт"</p>
+					<br>
+					<a href="#" onClick="start();" id="button-start">Старт</a>
+				</div>
+				<div id="box-game">
+					<p id="info"></p>
+					<input type="text" autocomplete="off" id="userAnswer">
+					<br>
+					<a href="#" onClick="game();" id="button-answer">Ответ</a>
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="footer">
+			Copyright © 2021
+		</div>
+	</body>
+	<script type="text/javascript">
+		function url(){
+			var url = window.location.pathname;
+			var arrUrl = url.split("/");
+			var nPage = arrUrl.length - 1;
+			var page = arrUrl[nPage];
+
+			document.getElementById(page).style.backgroundColor ="rgb(255, 153, 0)";
+		};
+		url();
+	</script>
+</html>
